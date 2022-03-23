@@ -12,6 +12,7 @@
 #include "DecisionComponent.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <raylib.h>
 #include <Vector2.h>
 
 Enemy::Enemy(float x, float y, const char* name, float speed, int maxHealth, float maxForce, Actor* targetActor) :
@@ -50,16 +51,24 @@ void Enemy::start()
 	addComponent(fleeBehavior);
 	onAddComponent(fleeBehavior);
 
-	IdleDecision* idleDecision = new IdleDecision();
-	WanderDecision* wanderDecision = new WanderDecision();
-	SeekDecision* seekDecision = new SeekDecision();
+	//IdleDecision* idleDecision = new IdleDecision();
+	//WanderDecision* wanderDecision = new WanderDecision();
+	//SeekDecision* seekDecision = new SeekDecision();
 
-	AggressiveDecision* aggressive = new AggressiveDecision(idleDecision, wanderDecision);
-	InRangeDecision* inRange = new InRangeDecision(aggressive, seekDecision);
+	//AggressiveDecision* aggressive = new AggressiveDecision(idleDecision, wanderDecision);
+	//InRangeDecision* inRange = new InRangeDecision(aggressive, seekDecision);
 
-	addComponent(new DecisionComponent(inRange));
+	//addComponent(new DecisionComponent(inRange));
 	
 
-	/*StateMachineComponent* stateMachineComponent = new StateMachineComponent();
-	addComponent(stateMachineComponent);*/
+	StateMachineComponent* stateMachineComponent = new StateMachineComponent();
+	addComponent(stateMachineComponent);
+}
+
+void Enemy::draw() {
+	MathLibrary::Vector2 position = getTransform()->getWorldPosition();
+	MathLibrary::Vector2 forwardPos = position + (getTransform()->getForward() * 50);
+
+	RAYLIB_H::DrawCircle(position.x, position.y, getTransform()->getScale().x, RED);
+	RAYLIB_H::DrawLine(position.x, position.y, forwardPos.x, forwardPos.y, BLACK);
 }

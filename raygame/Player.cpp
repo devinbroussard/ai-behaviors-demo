@@ -25,3 +25,11 @@ void Player::update(float deltaTime)
 	moveComponent->setVelocity(m_inputComponent->getMoveAxis() * Character::getSpeed());
 	Character::update(deltaTime);
 }
+
+void Player::draw() {
+	MathLibrary::Vector2 position = getTransform()->getWorldPosition();
+	MathLibrary::Vector2 forwardPos = position + (getTransform()->getForward() * 50);
+
+	RAYLIB_H::DrawCircle(position.x, position.y, getTransform()->getScale().x, GREEN);
+	RAYLIB_H::DrawLine(position.x, position.y, forwardPos.x, forwardPos.y, BLACK);
+}

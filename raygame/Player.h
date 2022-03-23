@@ -11,6 +11,7 @@ public:
 
 	void start() override;
 	void update(float deltaTime) override;
+	void draw() override; //Draws this actor onto the screen
 private:
 	InputComponent* m_inputComponent;
 };

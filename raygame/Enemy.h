@@ -14,6 +14,7 @@ public:
 	void setIsAggressive(bool value) { m_isAggressive = value; }
 
 	void start() override; //Initializes any used components
+	void draw() override; //Draws this actor to the screen
 
 private:
 	bool m_isAggressive;
