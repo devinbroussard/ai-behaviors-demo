@@ -7,7 +7,7 @@ class Character :
 	public Agent
 {
 public:
-	Character(float x, float y, const char* name, float speed, int maxHealth, float maxForce);
+	Character(float x, float y, const char* name, float speed, float maxForce);
 	~Character();
 
 	void setVelocity(float x, float y);
@@ -26,7 +26,6 @@ private:
 	MoveComponent* m_moveComponent;
 
 	float m_speed;
-	int m_maxHealth;
 	float m_firingCooldown;
 
 };

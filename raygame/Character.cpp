@@ -1,14 +1,11 @@
 #include "Character.h"
-#include "HealthComponent.h"
 #include "MoveComponent.h"
-#include "SpriteComponent.h"
 
-Character::Character(float x, float y, const char* name, float speed, int maxHealth, float maxForce) :
+Character::Character(float x, float y, const char* name, float speed, float maxForce) :
 	Agent(x, y, name, maxForce, speed)
 {
 	m_speed = speed;
 	m_firingCooldown = 0.3f;
-	m_maxHealth = maxHealth;
 }
 
 Character::~Character()
@@ -24,8 +21,6 @@ void Character::setVelocity(float x, float y)
 /// </summary>
 void Character::start()
 {
-	HealthComponent* healthComponent = dynamic_cast<HealthComponent*>(addComponent(new HealthComponent(m_maxHealth, this)));
-	SpriteComponent* spriteComponent = dynamic_cast<SpriteComponent*>(addComponent(new SpriteComponent("Sprites/player.png")));
 
 	Actor::start();
 }

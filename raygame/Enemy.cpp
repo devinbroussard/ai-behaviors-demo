@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "SeekBehavior.h"
 #include "WanderBehavior.h"
-#include "StateMachineComponent.h"
+#include "EnemyStateMachineComponent.h"
 #include "FleeBehavior.h"
 #include "Transform2D.h"
 #include "IdleDecision.h"
@@ -14,9 +14,10 @@
 #include <math.h>
 #include <raylib.h>
 #include <Vector2.h>
+#include "MoveComponent.h"
 
 Enemy::Enemy(float x, float y, const char* name, float speed, int maxHealth, float maxForce, Actor* targetActor) :
-	Character::Character(x, y, name, speed, maxHealth, maxForce)
+	Character::Character(x, y, name, speed, maxForce)
 {
 	m_targetActor = targetActor;
 }
@@ -39,15 +40,15 @@ bool Enemy::getTargetInRange()
 void Enemy::start()
 {
 	Character::start();
-	SeekBehavior* seekBehavior = new SeekBehavior(m_targetActor, 100);
+	SeekBehavior* seekBehavior = new SeekBehavior(m_targetActor, 120);
 	addComponent(seekBehavior);
 	onAddComponent(seekBehavior);
 
-	WanderBehavior* wanderBehavior = new WanderBehavior(12, 1500, 120);
+	WanderBehavior* wanderBehavior = new WanderBehavior(12, 1500, 100);
 	addComponent(wanderBehavior);
 	onAddComponent(wanderBehavior);
 
-	FleeBehavior* fleeBehavior = new FleeBehavior(m_targetActor, 200);
+	FleeBehavior* fleeBehavior = new FleeBehavior(m_targetActor, 150);
 	addComponent(fleeBehavior);
 	onAddComponent(fleeBehavior);
 
@@ -61,13 +62,14 @@ void Enemy::start()
 	//addComponent(new DecisionComponent(inRange));
 	
 
-	StateMachineComponent* stateMachineComponent = new StateMachineComponent();
+	EnemyStateMachineComponent* stateMachineComponent = new EnemyStateMachineComponent();
 	addComponent(stateMachineComponent);
 }
 
 void Enemy::draw() {
+	MoveComponent* moveComponent = getComponent<MoveComponent>();
 	MathLibrary::Vector2 position = getTransform()->getWorldPosition();
-	MathLibrary::Vector2 forwardPos = position + (getTransform()->getForward() * 50);
+	MathLibrary::Vector2 forwardPos = position + (moveComponent->getVelocity().getNormalized() * 50);
 
 	RAYLIB_H::DrawCircle(position.x, position.y, getTransform()->getScale().x, RED);
 	RAYLIB_H::DrawLine(position.x, position.y, forwardPos.x, forwardPos.y, BLACK);

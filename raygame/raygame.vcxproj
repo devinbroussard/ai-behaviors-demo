@@ -159,8 +159,6 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FleeBehavior.cpp" />
-    <ClCompile Include="FollowComponent.cpp" />
-    <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="IdleDecision.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="InRangeDecision.cpp" />
@@ -169,11 +167,11 @@
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerStateMachineComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SeekBehavior.cpp" />
     <ClCompile Include="SeekDecision.cpp" />
-    <ClCompile Include="SpriteComponent.cpp" />
-    <ClCompile Include="StateMachineComponent.cpp" />
+    <ClCompile Include="EnemyStateMachineComponent.cpp" />
     <ClCompile Include="SteeringComponent.cpp" />
     <ClCompile Include="Transform2D.cpp" />
     <ClCompile Include="WanderBehavior.cpp" />
@@ -194,8 +192,6 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FleeBehavior.h" />
-    <ClInclude Include="FollowComponent.h" />
-    <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="IdleDecision.h" />
     <ClInclude Include="InputComponent.h" />
@@ -203,11 +199,11 @@
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerStateMachineComponent.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SeekBehavior.h" />
     <ClInclude Include="SeekDecision.h" />
-    <ClInclude Include="SpriteComponent.h" />
-    <ClInclude Include="StateMachineComponent.h" />
+    <ClInclude Include="EnemyStateMachineComponent.h" />
     <ClInclude Include="SteeringComponent.h" />
     <ClInclude Include="Transform2D.h" />
     <ClInclude Include="WanderBehavior.h" />

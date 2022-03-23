@@ -1,4 +1,4 @@
-#include "StateMachineComponent.h"
+#include "EnemyStateMachineComponent.h"
 #include "Actor.h"
 #include "SeekBehavior.h"
 #include "WanderBehavior.h"
@@ -6,23 +6,23 @@
 #include "Transform2D.h"
 #include <Vector2.h>
 
-StateMachineComponent::StateMachineComponent() 
+EnemyStateMachineComponent::EnemyStateMachineComponent() 
 	:Component("StateMachineComponent")
 {
 }
 
-void StateMachineComponent::start() {
+void EnemyStateMachineComponent::start() {
 	m_seekComponent = getOwner()->getComponent<SeekBehavior>();
 	m_fleeComponent = getOwner()->getComponent<FleeBehavior>();
 	m_wanderComponent = getOwner()->getComponent<WanderBehavior>();
 	m_seekForce = m_seekComponent->getForce();
 	m_wanderForce = m_wanderComponent->getForce();
 	m_fleeForce = m_fleeComponent->getForce();
-	m_currentState = IDLE;
+	m_currentState = SEEK;
 	Component::start();
 }
 
-void StateMachineComponent::update(float deltaTime) {
+void EnemyStateMachineComponent::update(float deltaTime) {
 
 	MathLibrary::Vector2 targetPos = m_seekComponent->getTarget()->getTransform()->getWorldPosition();
 	MathLibrary::Vector2 ownerPos = getOwner()->getTransform()->getWorldPosition();
@@ -53,8 +53,8 @@ void StateMachineComponent::update(float deltaTime) {
 		m_fleeComponent->setForce(0);
 		m_seekComponent->setForce(m_seekForce);
 
-		if (!targetInRange)
-			setCurrentState(WANDER);
+		//if (!targetInRange)
+		//	setCurrentState(WANDER);
 
 		break;
 	case FLEE:
