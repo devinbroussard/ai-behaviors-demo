@@ -14,6 +14,7 @@ public:
 	//Used to return the target actor
 	Actor* getTargetActor() { return m_targetActor; }
 
+	void fireBullet(float deltaTime);
 	void start() override;
 	void update(float deltaTime) override;
 	void draw() override; //Draws this actor onto the screen

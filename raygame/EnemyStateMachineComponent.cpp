@@ -18,7 +18,7 @@ void EnemyStateMachineComponent::start() {
 	m_seekForce = m_seekComponent->getForce();
 	m_wanderForce = m_wanderComponent->getForce();
 	m_fleeForce = m_fleeComponent->getForce();
-	m_currentState = SEEK;
+	m_currentState = WANDER;
 	Component::start();
 }
 
@@ -53,8 +53,8 @@ void EnemyStateMachineComponent::update(float deltaTime) {
 		m_fleeComponent->setForce(0);
 		m_seekComponent->setForce(m_seekForce);
 
-		//if (!targetInRange)
-		//	setCurrentState(WANDER);
+		if (!targetInRange)
+			setCurrentState(WANDER);
 
 		break;
 	case FLEE:

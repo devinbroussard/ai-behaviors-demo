@@ -31,18 +31,22 @@ void Player::start() {
 	PlayerStateMachineComponent* stateMachine = new PlayerStateMachineComponent();
 	addComponent(stateMachine);*/
 
-	InputComponent* inputComponent = new InputComponent(this);
-	addComponent(inputComponent);
+	m_inputComponent = new InputComponent(this);
+	addComponent(m_inputComponent);
 }
 
 void Player::update(float deltaTime) {
+	MoveComponent* moveComponent = getComponent<MoveComponent>();
+	moveComponent->setVelocity(m_inputComponent->getMoveAxis() * Character::getSpeed());
+
+
+
 	Character::update(deltaTime);
 }
 
 void Player::draw() {
-	MoveComponent* moveComponent = getComponent<MoveComponent>();
 	MathLibrary::Vector2 position = getTransform()->getWorldPosition();
-	MathLibrary::Vector2 forwardPos = position + (moveComponent->getVelocity().getNormalized() * 50);
+	MathLibrary::Vector2 forwardPos = position + (getTransform()->getForward() * 50);
 
 	RAYLIB_H::DrawCircle(position.x, position.y, getTransform()->getScale().x, GREEN);
 	RAYLIB_H::DrawLine(position.x, position.y, forwardPos.x, forwardPos.y, BLACK);
