@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Scene.h"
 #include "Transform2D.h"
+#include "BulletPool.h"
 
 void MainScene::start()
 {
@@ -13,6 +14,13 @@ void MainScene::start()
 	player->setTargetActor(enemy);
 	player->getTransform()->setScale({ 10, 10 });
 	enemy->getTransform()->setScale({ 10, 10 });
+
+	BulletPool* bulletPool = new BulletPool(player, 3);
+	player->setBulletPool(bulletPool);
+	enemy->setEnemyBullets(bulletPool->getBullets());
+	bulletPool->start();
+	bulletPool->start();
+	bulletPool->start();
 
 	addActor(player);
 	addActor(enemy);

@@ -6,9 +6,11 @@
 #include "WanderBehavior.h"
 #include "FleeBehavior.h"
 #include "PlayerStateMachineComponent.h"
+#include "BulletPool.h"
 
 Player::Player(float x, float y, const char* name, float speed, int maxHealth, float maxForce) :
 	Character::Character(x, y, name, speed, maxForce) {
+	m_bulletPool = nullptr;
 }
 
 //Initializes components
@@ -39,7 +41,8 @@ void Player::update(float deltaTime) {
 	MoveComponent* moveComponent = getComponent<MoveComponent>();
 	moveComponent->setVelocity(m_inputComponent->getMoveAxis() * Character::getSpeed());
 
-
+	if (IsKeyPressed(KEY_SPACE))
+		m_bulletPool->shootBullet();
 
 	Character::update(deltaTime);
 }

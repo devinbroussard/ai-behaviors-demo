@@ -1,6 +1,7 @@
 #pragma once
 #include "Character.h"
 class InputComponent;
+class BulletPool;
 
 class Player :
 	public Character
@@ -13,13 +14,14 @@ public:
 	void setTargetActor(Actor* actor) { m_targetActor = actor; }
 	//Used to return the target actor
 	Actor* getTargetActor() { return m_targetActor; }
+	void setBulletPool(BulletPool* bulletPool) { m_bulletPool = bulletPool; }
 
-	void fireBullet(float deltaTime);
 	void start() override;
 	void update(float deltaTime) override;
 	void draw() override; //Draws this actor onto the screen
 private:
 	InputComponent* m_inputComponent;
 	Actor* m_targetActor; //The actor that this actor will flee from
+	BulletPool* m_bulletPool;
 };
 
