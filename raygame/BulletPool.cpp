@@ -27,7 +27,7 @@ void BulletPool::enableBullet(Bullet* bullet) {
 }
 
 void BulletPool::start() {
-	Bullet** m_bullets = new Bullet* [m_bulletCount];
+	m_bullets = new Bullet* [m_bulletCount];
 
 	for (int i = 0; i < m_bulletCount; i++) {
 		Bullet* bullet = new Bullet(m_owner);
