@@ -24,11 +24,17 @@ void Bullet::shoot() {
 	enable();
 }
 
+void Bullet::enable() {
+	m_enabled = true;
+	m_timer = 0;
+}
+
 void Bullet::resetPosition() {
 	getTransform()->setWorldPostion(m_owner->getTransform()->getWorldPosition());
 }
 
 void Bullet::start() {
+	getTransform()->setScale({ 2, 2 });
 	m_moveComponent = new MoveComponent(500, "MoveComponent");
 	addComponent(m_moveComponent);
 	Actor::start();
@@ -46,10 +52,12 @@ void Bullet::update(float deltaTime) {
 }
 
 void Bullet::draw() {
-	//Draws this bullet to the screen
-	MathLibrary::Vector2 position = getTransform()->getWorldPosition();
-	RAYLIB_H::DrawCircle(position.x, position.y, getTransform()->getScale().x, BLACK);
-	Actor::draw();
+	if (m_enabled) {
+		//Draws this bullet to the screen
+		MathLibrary::Vector2 position = getTransform()->getWorldPosition();
+		RAYLIB_H::DrawCircle(position.x, position.y, getTransform()->getScale().x, BLACK);
+		Actor::draw();
+	}
 }
 
 void Bullet::onCollision(Actor* actor) {

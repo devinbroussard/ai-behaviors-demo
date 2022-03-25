@@ -10,7 +10,7 @@ public:
 
     //Shoots this bullet
     void shoot();
-    void enable() {m_enabled = true; }
+    void enable();
     //Returns whether or not this bullet is enabled
     bool isEnabled() { return m_enabled; }
     //Returns the move component

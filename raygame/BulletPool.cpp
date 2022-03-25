@@ -15,6 +15,7 @@ void BulletPool::shootBullet() {
 	for (int i = 0; i < m_bulletCount; i++) {
 		if (!m_bullets[i]->isEnabled()) {
 			m_bullets[i]->shoot();
+			return;
 		}
 	}
 }
