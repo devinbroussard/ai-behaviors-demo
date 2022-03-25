@@ -20,7 +20,7 @@ Bullet::~Bullet() {
 
 void Bullet::shoot() {
 	resetPosition();
-	getMoveComponent()->setVelocity(m_owner->getTransform()->getForward() * 1000);
+	getMoveComponent()->setVelocity(m_owner->getTransform()->getForward() * 100);
 	enable();
 }
 

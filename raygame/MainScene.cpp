@@ -17,9 +17,10 @@ void MainScene::start()
 	enemy->getTransform()->setScale({ 10, 10 });
 
 	BulletPool* bulletPool = new BulletPool(player, 3);
-	player->setBulletPool(bulletPool);
-	enemy->setEnemyBullets(bulletPool->getBullets());
 	bulletPool->start();
+	player->setBulletPool(bulletPool);
+	enemy->setEnemyBullets(bulletPool->getBullets(), bulletPool->getCount());
+
 
 	addActor(player);
 	addActor(enemy);

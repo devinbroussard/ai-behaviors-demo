@@ -1,8 +1,9 @@
 #pragma once
 #include "Component.h"
-class SeekBehavior;
+class PursueBehavior;
 class WanderBehavior;
-class FleeBehavior;
+class EvadeBehavior;
+class Bullet;
 
 enum State {
 	IDLE,
@@ -14,14 +15,16 @@ enum State {
 class EnemyStateMachineComponent :
 	public Component {
 public:
-	EnemyStateMachineComponent();
+	EnemyStateMachineComponent(Bullet** enemyBullets, int bulletCount);
 	~EnemyStateMachineComponent() {}
 
+	//Returns true if the enemy is in range of any bullets
+	bool inRangeOfBullets(Bullet** bullet);
 	State getCurrentState() { return m_currentState; }
 	void setCurrentState(State state) { m_currentState = state; }
-	SeekBehavior* getSeekComponent() { return m_seekComponent; }
+	PursueBehavior* getSeekComponent() { return m_seekComponent; }
 	WanderBehavior* getWanderComponent() { return m_wanderComponent; }
-	FleeBehavior* getFleeComponent() { return m_fleeComponent; }
+	EvadeBehavior* getFleeComponent() { return m_fleeComponent; }
 	float getWanderForce() { return m_wanderForce; }
 	float getSeekForce() { return m_seekForce; }
 	float getFleeForce() { return m_fleeForce; }
@@ -30,10 +33,13 @@ public:
 	virtual void update(float deltaTime) override; 
 
 private:
+	Bullet* m_bulletToEvade;
+	int m_bulletCount;
+	Bullet** m_enemyBullets;
 	State m_currentState;
-	SeekBehavior* m_seekComponent;
+	PursueBehavior* m_seekComponent;
 	WanderBehavior* m_wanderComponent;
-	FleeBehavior* m_fleeComponent;
+	EvadeBehavior* m_fleeComponent;
 	float m_wanderForce;
 	float m_seekForce;
 	float m_fleeForce;

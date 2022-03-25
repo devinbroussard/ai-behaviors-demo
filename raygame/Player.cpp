@@ -2,9 +2,9 @@
 #include "InputComponent.h"
 #include <Vector2.h>
 #include "MoveComponent.h"
-#include "SeekBehavior.h"
+#include "EvadeBehavior.h"
 #include "WanderBehavior.h"
-#include "FleeBehavior.h"
+#include "PursueBehavior.h"
 #include "PlayerStateMachineComponent.h"
 #include "BulletPool.h"
 
@@ -18,7 +18,7 @@ void Player::start() {
 	Character::start();
 	/*
 	Character::start();
-	SeekBehavior* seekBehavior = new SeekBehavior(m_targetActor, 100);
+	PursueBehavior* seekBehavior = new PursueBehavior(m_targetActor, 100);
 	addComponent(seekBehavior);
 	onAddComponent(seekBehavior);
 
@@ -26,7 +26,7 @@ void Player::start() {
 	addComponent(wanderBehavior);
 	onAddComponent(wanderBehavior);
 
-	FleeBehavior* fleeBehavior = new FleeBehavior(m_targetActor, 200);
+	EvadeBehavior* fleeBehavior = new EvadeBehavior(m_targetActor, 200);
 	addComponent(fleeBehavior);
 	onAddComponent(fleeBehavior);
 

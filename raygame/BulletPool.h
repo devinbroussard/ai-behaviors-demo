@@ -10,6 +10,7 @@ public:
 	
 	//Returns the bullets
 	Bullet** getBullets() { return m_bullets; }
+	int getCount() { return m_bulletCount; }
 	void shootBullet(); //Shoots a disabled bullet
 	void enableBullet(Bullet* bullet); //Enables bullets to be updated
 

@@ -1,10 +1,14 @@
 #include "PlayerStateMachineComponent.h"
 #include <Vector2.h>
-#include "FleeBehavior.h"
+#include "PursueBehavior.h"
 #include "WanderBehavior.h"
-#include "SeekBehavior.h"
+#include "EvadeBehavior.h"
 #include "Actor.h"
 #include "Transform2D.h"
+
+PlayerStateMachineComponent::PlayerStateMachineComponent() : EnemyStateMachineComponent(nullptr, 0) {
+	m_fleeRange = 0;
+}
 
 void PlayerStateMachineComponent::start() {
 	EnemyStateMachineComponent::start();

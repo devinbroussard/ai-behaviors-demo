@@ -1,8 +1,8 @@
 #include "Enemy.h"
-#include "SeekBehavior.h"
+#include "EvadeBehavior.h"
 #include "WanderBehavior.h"
 #include "EnemyStateMachineComponent.h"
-#include "FleeBehavior.h"
+#include "PursueBehavior.h"
 #include "Transform2D.h"
 #include "IdleDecision.h"
 #include "SeekDecision.h"
@@ -40,7 +40,7 @@ bool Enemy::getTargetInRange()
 void Enemy::start()
 {
 	Character::start();
-	SeekBehavior* seekBehavior = new SeekBehavior(m_targetActor, 120);
+	PursueBehavior* seekBehavior = new PursueBehavior(m_targetActor, 120);
 	addComponent(seekBehavior);
 	onAddComponent(seekBehavior);
 
@@ -48,7 +48,7 @@ void Enemy::start()
 	addComponent(wanderBehavior);
 	onAddComponent(wanderBehavior);
 
-	FleeBehavior* fleeBehavior = new FleeBehavior(m_targetActor, 150);
+	EvadeBehavior* fleeBehavior = new EvadeBehavior(m_targetActor, 150);
 	addComponent(fleeBehavior);
 	onAddComponent(fleeBehavior);
 
@@ -62,7 +62,7 @@ void Enemy::start()
 	//addComponent(new DecisionComponent(inRange));
 	
 
-	EnemyStateMachineComponent* stateMachineComponent = new EnemyStateMachineComponent();
+	EnemyStateMachineComponent* stateMachineComponent = new EnemyStateMachineComponent(m_enemyBullets, m_enemyBulletCount);
 	addComponent(stateMachineComponent);
 }
 

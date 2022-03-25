@@ -1,7 +1,7 @@
 #include "Agent.h"
 #include "WanderBehavior.h"
-#include "SeekBehavior.h"
-#include "FleeBehavior.h"
+#include "PursueBehavior.h"
+#include "EvadeBehavior.h"
 #include "SteeringComponent.h"
 #include "MoveComponent.h"
 

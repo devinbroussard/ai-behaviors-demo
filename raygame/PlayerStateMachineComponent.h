@@ -3,7 +3,7 @@
 class PlayerStateMachineComponent :
 	public EnemyStateMachineComponent {
 public:
-	PlayerStateMachineComponent() { m_fleeRange = 100; }
+	PlayerStateMachineComponent();
 	~PlayerStateMachineComponent() {}
 
 	void start() override; //Changes the current state of the player

@@ -1,10 +1,10 @@
 #include "SeekDecision.h"
-#include "SeekBehavior.h"
+#include "EvadeBehavior.h"
 #include "Enemy.h"
 #include "WanderBehavior.h"
 
 void SeekDecision::makeDecision(Agent* agent, float deltaTime) {
-	SeekBehavior* seek = agent->getComponent<SeekBehavior>();
+	EvadeBehavior* seek = agent->getComponent<EvadeBehavior>();
 	WanderBehavior* wander = agent->getComponent<WanderBehavior>();
 	Enemy* enemy = dynamic_cast<Enemy*>(agent);
 

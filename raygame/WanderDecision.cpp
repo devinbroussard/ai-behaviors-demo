@@ -1,10 +1,10 @@
 #include "WanderDecision.h"
 #include "WanderBehavior.h"
-#include "SeekBehavior.h"
+#include "EvadeBehavior.h"
 
 void WanderDecision::makeDecision(Agent* agent, float deltaTime) {
 	WanderBehavior* wander = agent->getComponent<WanderBehavior>();
-	SeekBehavior* seek = agent->getComponent<SeekBehavior>();
+	EvadeBehavior* seek = agent->getComponent<EvadeBehavior>();
 
 	if (wander) wander->setForce(200);
 	if (seek) seek->setForce(0);
